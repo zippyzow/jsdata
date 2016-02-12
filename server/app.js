@@ -34,19 +34,14 @@ app.use(flash());
 
 
 
-app.use('/api/posts', require('./posts'))
-app.use('/api/users', require('./users'))
+app.use('/api/posts', require('./posts'));
+app.use('/api/users', require('./users'));
 
 app.get('/*', function(req, res) {
 	res.sendFile(indexHtmlPath);
 });
 
-// app.route('/*')
-// 	.get(function(req, res) {
-// 		res.sendFile(app.get('appPath') + '/index.html');
-// 	})
-
 app.use(function(err, req, res, next) {
-	res.status(err.status).send(err.message)
+	res.status(err.status).send(err.message);
 });
 
