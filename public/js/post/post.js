@@ -5,12 +5,11 @@ app.config(function($stateProvider) {
 		url: '/post/:postId',
 		templateUrl: 'js/post/post.html',
 		controller: 'PostCtrl', 
-		resolve: {
-			users: function(User){
-				// GET - > '/api/users'
-				return User.findAll()
-			}
-		}
+		/*
+				add a resolve block that retrieves all the users
+				so that the author field of the posts will be automatically 
+				populated
+		*/
 	})
 });
 
@@ -23,14 +22,9 @@ app.controller('PostCtrl', function() {
 		on controller load 
 	*/
 
-	/*
-		2. DELETE POST 
-		create a function that destroys the post, adds an alert that the post has been 
-		successfully deleted, and redirects to the main state. 
-	*/
 
 	/*
-		3. EDIT POST 
+		2. EDIT POST 
 		create a function that edits the post, adds an alert that the post has been 
 		successfully edited, and displays the edited post.  
 
