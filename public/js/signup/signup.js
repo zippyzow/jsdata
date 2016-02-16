@@ -7,11 +7,16 @@ app.config(function($stateProvider) {
 		templateUrl: 'js/signup/signup.html',
 		controller: 'SignupCtrl'
 	})
-})
+});
 
 // add necessary dependencies here
-app.controller('SignupCtrl', function($scope) {
+app.controller('SignupCtrl', function($scope, User) {
+  //console.log($scope.signup);
 
+  $scope.sendSignup = function (signup){
+    console.log(signup);
+    return User.create(signup);
+  }
 
   /*
   TODOS: 
@@ -20,6 +25,8 @@ app.controller('SignupCtrl', function($scope) {
       a) persists the user data 
       b) changes the state to  'create' while sending along important user data
       (HINT: $stateParams)
+
+      //state.go(stateName, {userid:signup._id}
 
   */
 

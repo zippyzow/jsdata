@@ -4,12 +4,27 @@ app.config(function($stateProvider) {
 	$stateProvider.state('main', {
 		url: '/',
 		templateUrl: '/main.html',
-		controller: 'MainController'
-			// RESOLVE!
-	})
-})
+		controller: 'MainController',
+		resolve: {
+			users: function (User) {
+				return User.findAll();
+			},
+			posts: function (Post, users) {
+				return Post.findAll({});
+			}
+		}
+	});
+});
 
-app.controller('MainController', function($scope) {
+app.controller('MainController', function($scope, posts, Post) {
+	$scope.allPosts = posts;
+	console.log('posts', posts);
+
+  var dataInJsDataCache = Post.getAll();
+  //Post.ejectAll();
+  //console.log('ejected data', Post.getAll());
+  //Post.inject(dataInJsDataCache);
+  console.log('data in jsdata cache: ', dataInJsDataCache);
 
  	/*
 		TODOS: 
